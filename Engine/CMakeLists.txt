@@ -6,6 +6,7 @@ set(ENGINE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/World/World.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/Log.cpp
     ${CMAKE_SOURCE_DIR}/lib/glad.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Shader.cpp
 )
 
 add_library(Engine ${ENGINE_SOURCES})
