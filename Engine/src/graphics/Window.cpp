@@ -1,5 +1,9 @@
 #include "Window.h"
-#include <iostream>
+
+#include "Entity.h"
+#include "RenderSystem.h"
+#include "SphereComponent.h"
+#include "Shader.h"
 
 namespace Planets {
 
@@ -34,7 +38,26 @@ namespace Planets {
         EH_CORE_INFO("Window opened successfully\n");
 
         glfwMakeContextCurrent(window);
+        
+        glfwSetFramebufferSizeCallback(window, [] ( [[maybe_unused]] GLFWwindow* window, int width, int height)
+        {
+            glViewport(0, 0, width, height);
+        } );
+    
         glfwSwapInterval(1); // vsync
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+        {
+            EH_CORE_ERROR("Failed to init OPGL context\n");
+            return false;
+        }
+        
+        EH_CORE_INFO("OPGL context initialized successfully\n");
+        Entity entity = world.CreateEntity();
+        SphereComponent* comp = world.AddComponent<SphereComponent>(entity.getID());
+        Shader* shader = new Shader();
+        shader->Init("../Engine/src/shader/sphere_shader.vs", "../Engine/src/shader/sphere_shader.fs");
+        world.CreateSystem<RenderSystem>(comp->getVAO(), shader, comp, width, height);
+        
         return true;
     }
 
@@ -42,6 +65,7 @@ namespace Planets {
     {
         processInput();
         glfwPollEvents();
+        world.Update();
     }
 
     bool Window::shouldClose() const

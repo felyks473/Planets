@@ -30,11 +30,11 @@ namespace Planets {
             }
         }
 
-        void Update(float deltaTime)
+        void Update()
         {
             for (auto& system : systems)
             {
-                system->Update(deltaTime);
+                system->Update();
             }
         }
 

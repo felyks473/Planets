@@ -4,7 +4,6 @@
 #include <GLFW/glfw3.h>
 
 #include "Log.h"
-#include <string>
 #include <fstream>
 #include <sstream>
 
@@ -104,5 +103,9 @@ namespace Planets {
         glDeleteShader(fragmentShader);
         
     }
-
+    
+    void Shader::setMat4(const std::string &name, const glm::mat4 &mat) const
+    {
+        glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
 }

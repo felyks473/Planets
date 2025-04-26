@@ -16,14 +16,6 @@ namespace Planets {
         }
 
         EH_CORE_INFO("Window initialized successfully\n");
-    
-        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-        {
-            EH_CORE_ERROR("Failed to init OPGL context\n");
-            return false;
-        }
-        
-        EH_CORE_INFO("OPGL context initialized successfully\n");
 
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -32,10 +24,10 @@ namespace Planets {
 
     void Renderer::render()
     {
-        glClear(GL_COLOR_BUFFER_BIT);
 
-        glfwSwapBuffers(window.getWindow());
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         window.update();
+        glfwSwapBuffers(window.getWindow());
     }
 
     void Renderer::shutdown()

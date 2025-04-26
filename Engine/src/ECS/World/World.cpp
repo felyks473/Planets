@@ -19,12 +19,6 @@ namespace Planets {
         entityManager->destroyEntity(e.getID());
     }
 
-    template <typename T, typename... Args>
-    void World::CreateSystem(Args&&... args)
-    {
-        systemManager->Create<T>(std::forward<Args>(args)...);
-    }
-
     void World::AddSystem(std::shared_ptr<Planets::System> sys)
     {
         systemManager->Add(sys);
@@ -35,9 +29,9 @@ namespace Planets {
         systemManager->Remove(sys);
     }
 
-    void World::Update(float dt)
+    void World::Update()
     {
-        systemManager->Update(dt);
+        systemManager->Update();
     }
 
 }

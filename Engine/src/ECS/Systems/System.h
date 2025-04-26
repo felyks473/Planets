@@ -7,7 +7,7 @@ namespace Planets {
     public:
         virtual ~System() = default;
 
-        virtual void Update(float deltaTime) = 0;
+        virtual void Update() = 0;
     };
 
 }

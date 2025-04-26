@@ -7,6 +7,8 @@ set(ENGINE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/Log.cpp
     ${CMAKE_SOURCE_DIR}/lib/glad.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Shader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/RenderSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/SphereComponent.cpp
 )
 
 add_library(Engine ${ENGINE_SOURCES})
@@ -18,8 +20,12 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Entity
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Components
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Systems
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/World
     ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics
     ${CMAKE_CURRENT_SOURCE_DIR}/src/helper
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/
     ${CMAKE_SOURCE_DIR}/lib
     ${CMAKE_SOURCE_DIR}/lib/spdlog/include
+    ${CMAKE_SOURCE_DIR}/lib/glm
 )
