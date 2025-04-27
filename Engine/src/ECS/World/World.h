@@ -14,19 +14,19 @@ namespace Planets {
         ~World();
     
         Entity CreateEntity();
-        void DestroyEntity(Planets::Entity e);
+        void DestroyEntity(Entity e);
     
         template <typename T, typename... Args>
         void CreateSystem(Args&&... args);
-        void AddSystem(std::shared_ptr<Planets::System> sys);
-        void RemoveSystem(std::shared_ptr<Planets::System> sys);
+        void AddSystem(std::shared_ptr<System> sys);
+        void RemoveSystem(std::shared_ptr<System> sys);
         void Update();
         template <typename T>
         T* AddComponent(std::uint32_t ID);
     public:
-        std::unique_ptr<Planets::EntityManager> entityManager;
-        std::unique_ptr<Planets::ComponentManager> componentManager;
-        std::unique_ptr<Planets::SystemManager> systemManager;
+        std::unique_ptr<EntityManager> entityManager;
+        std::unique_ptr<ComponentManager> componentManager;
+        std::unique_ptr<SystemManager> systemManager;
     };
 
 }

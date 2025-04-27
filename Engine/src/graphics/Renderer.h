@@ -18,7 +18,7 @@ namespace Planets {
         bool shouldClose() const;
 
     private:
-        Planets::Window window;
+        Window window;
     };
 
 }

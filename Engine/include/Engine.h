@@ -21,7 +21,7 @@ namespace Planets {
         void gameLoop();
 
         bool isRunning;
-        std::shared_ptr<Planets::Renderer> renderer;
+        std::shared_ptr<Renderer> renderer;
     };
 
 }

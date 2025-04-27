@@ -3,7 +3,7 @@
 namespace Planets {
     
     World::World()
-    : entityManager(std::make_unique<Planets::EntityManager>()), componentManager(std::make_unique<Planets::ComponentManager>()), systemManager(std::make_unique<Planets::SystemManager>())
+    : entityManager(std::make_unique<EntityManager>()), componentManager(std::make_unique<ComponentManager>()), systemManager(std::make_unique<SystemManager>())
     {
     }
 
@@ -14,17 +14,17 @@ namespace Planets {
         return entityManager->createEntity();
     }
 
-    void World::DestroyEntity(Planets::Entity e)
+    void World::DestroyEntity(Entity e)
     {
         entityManager->destroyEntity(e.getID());
     }
 
-    void World::AddSystem(std::shared_ptr<Planets::System> sys)
+    void World::AddSystem(std::shared_ptr<System> sys)
     {
         systemManager->Add(sys);
     }
 
-    void World::RemoveSystem(std::shared_ptr<Planets::System> sys)
+    void World::RemoveSystem(std::shared_ptr<System> sys)
     {
         systemManager->Remove(sys);
     }

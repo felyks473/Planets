@@ -31,7 +31,7 @@ namespace Planets {
         }
 
     private:
-        std::unordered_map<int, std::vector<std::unique_ptr<Planets::Component>>> components;
+        std::unordered_map<int, std::vector<std::unique_ptr<Component>>> components;
     };
 
 }

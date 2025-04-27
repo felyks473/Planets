@@ -4,7 +4,7 @@
 namespace Planets {
 
     Engine::Engine()
-    : isRunning(false), renderer(std::make_shared<Planets::Renderer>()) {}
+    : isRunning(false), renderer(std::make_shared<Renderer>()) {}
 
     Engine::~Engine()
     {
@@ -14,7 +14,7 @@ namespace Planets {
 
     bool Engine::init()
     {
-        Planets::Log::Init();
+        Log::Init();
 
         EH_CORE_INFO("Turning on the engine\n");
         

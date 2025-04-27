@@ -9,7 +9,7 @@ namespace Planets {
     class SystemManager
     {
     public:
-        void Add(std::shared_ptr<Planets::System> sys)
+        void Add(std::shared_ptr<System> sys)
         {
             systems.push_back(sys);
         }
@@ -21,7 +21,7 @@ namespace Planets {
             systems.push_back(system);
         }
 
-        void Remove(std::shared_ptr<Planets::System> sys)
+        void Remove(std::shared_ptr<System> sys)
         {
             auto it = std::find(systems.begin(), systems.end(), sys);
             if (it != systems.end())
@@ -39,7 +39,7 @@ namespace Planets {
         }
 
     private:
-        std::vector<std::shared_ptr<Planets::System>> systems;
+        std::vector<std::shared_ptr<System>> systems;
     };
 
 }
