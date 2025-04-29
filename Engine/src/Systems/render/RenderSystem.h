@@ -6,8 +6,7 @@
 #include "System.h"
 #include "Shader.h"
 #include "SphereComponent.h"
-
-#include <glm/glm.hpp>
+#include "TransformComponent.h"
 
 #include <cstdint>
 
@@ -25,5 +24,6 @@ namespace Planets
         Shader* shader;
         SphereComponent* component;
         int windowWidth, windowHeight;
+        TransformComponent* transformComponent;
     };
 }

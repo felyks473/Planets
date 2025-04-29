@@ -11,6 +11,7 @@ set(ENGINE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/RenderSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/SphereComponent.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/TransformComponent.cpp
 )
 
 add_library(Engine ${ENGINE_SOURCES})
