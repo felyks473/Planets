@@ -6,7 +6,9 @@ set(ENGINE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/World/World.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/Log.cpp
     ${CMAKE_SOURCE_DIR}/lib/glad.c
+    ${CMAKE_SOURCE_DIR}/lib/additional.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Shader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/RenderSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/SphereComponent.cpp
 )
