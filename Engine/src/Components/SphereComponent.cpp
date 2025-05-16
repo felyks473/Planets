@@ -15,14 +15,15 @@ namespace Planets {
         std::vector<glm::vec3> vertices;
         std::vector<glm::vec2> texCoords;
 
+        const float PI = 3.1415926535f;
         float r = 1.5f;
         for (int lat = 0; lat <= latitudeCount; ++lat) {
             
-            float theta = lat * M_PI / latitudeCount;
+            float theta = lat * PI / latitudeCount;
             
             for (int lon = 0; lon <= longitudeCount; ++lon) {
                 
-                float phi = lon * 2 * M_PI / longitudeCount;
+                float phi = lon * 2 * PI / longitudeCount;
                 float x = r * sin(theta) * cos(phi);
                 float y = r * cos(theta);
                 float z = r * sin(theta) * sin(phi);

@@ -5,6 +5,8 @@
 #include "SphereComponent.h"
 #include "Shader.h"
 
+#include <filesystem>
+
 namespace Planets {
 
     Window::Window()
@@ -55,7 +57,14 @@ namespace Planets {
         Entity entity = world.CreateEntity();
         SphereComponent* comp = world.AddComponent<SphereComponent>(entity.getID());
         Shader* shader = new Shader();
-        shader->Init("../Engine/src/shader/sphere_shader.vs", "../Engine/src/shader/sphere_shader.fs");
+        
+        std::filesystem::path vfPath = "../Engine/src/shader/sphere_shader.vs";
+        std::filesystem::path ffPath = "../Engine/src/shader/sphere_shader.fs";
+
+        std::string vPath = vfPath.string();    
+        std::string fPath = ffPath.string();
+
+        shader->Init(vPath.c_str(), fPath.c_str());
         world.CreateSystem<RenderSystem>(comp->getVAO(), shader, comp, width, height);
         
         return true;

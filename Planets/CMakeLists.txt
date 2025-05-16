@@ -5,4 +5,8 @@ target_include_directories(Planets PRIVATE
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/Engine/include>
 )
 
-target_link_libraries(Planets PRIVATE Engine OpenGL::GL glfw)
+if(UNIX)
+    target_link_libraries(Planets PRIVATE Engine OpenGL::GL glfw)
+elseif(WIN32)
+    target_link_libraries(Planest PRIVATE Engine opengl32 glfw)
+endif()

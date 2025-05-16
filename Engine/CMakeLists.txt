@@ -31,4 +31,5 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_SOURCE_DIR}/lib
     ${CMAKE_SOURCE_DIR}/lib/spdlog/include
     ${CMAKE_SOURCE_DIR}/lib/glm
+    ${CMAKE_SOURCE_DIR}/lib/glfw/include
 )
