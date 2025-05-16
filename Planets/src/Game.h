@@ -9,9 +9,9 @@ public:
     Game();
     ~Game();
 
-    bool init();
-    void run();
-    void shutdown();
+    bool init() const;
+    void run() const;
+    void shutdown() const;
 
 private:
     std::shared_ptr<Planets::Engine> engine;

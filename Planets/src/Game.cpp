@@ -7,7 +7,7 @@ Game::~Game()
     shutdown();
 }
 
-bool Game::init()
+bool Game::init() const
 {
     if (!engine->init())
     {
@@ -17,12 +17,12 @@ bool Game::init()
     return true;
 }
 
-void Game::run()
+void Game::run() const
 {
     engine->run();
 }
 
-void Game::shutdown()
+void Game::shutdown() const
 {
     engine->shutdown();
 }

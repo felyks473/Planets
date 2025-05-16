@@ -70,7 +70,7 @@ namespace Planets {
         return true;
     }
 
-    void Window::update()
+    void Window::update() const
     {
         processInput();
         glfwPollEvents();
@@ -96,7 +96,7 @@ namespace Planets {
         }
     }
 
-    void Window::processInput()
+    void Window::processInput() const
     {
         if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             glfwSetWindowShouldClose(window, true);

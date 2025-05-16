@@ -30,7 +30,7 @@ namespace Planets {
             }
         }
 
-        void Update()
+        void Update() const
         {
             for (auto& system : systems)
             {

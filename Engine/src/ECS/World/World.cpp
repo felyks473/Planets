@@ -29,7 +29,7 @@ namespace Planets {
         systemManager->Remove(sys);
     }
 
-    void World::Update()
+    void World::Update() const
     {
         systemManager->Update();
     }

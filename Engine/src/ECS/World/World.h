@@ -20,7 +20,7 @@ namespace Planets {
         void CreateSystem(Args&&... args);
         void AddSystem(std::shared_ptr<System> sys);
         void RemoveSystem(std::shared_ptr<System> sys);
-        void Update();
+        void Update() const;
         template <typename T>
         T* AddComponent(std::uint32_t ID);
     public:

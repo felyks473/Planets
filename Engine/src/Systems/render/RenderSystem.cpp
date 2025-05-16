@@ -2,11 +2,12 @@
 
 namespace Planets {
 
-    RenderSystem::RenderSystem(std::uint32_t VAO, Shader* shader, SphereComponent* component, int windowWidth, int windowHeight) : VAO(VAO), shader(shader), component(component), windowWidth(windowWidth), windowHeight(windowHeight) {}
+    RenderSystem::RenderSystem(const std::uint32_t VAO, Shader* shader, SphereComponent* component, const int windowWidth, const int windowHeight) : VAO(VAO), shader(shader), component(component), windowWidth(windowWidth), windowHeight(windowHeight) {}
     
     RenderSystem::~RenderSystem() {}
 
-    void RenderSystem::Update() { 
+    void RenderSystem::Update()
+    { 
 
         transformComponent->Update(windowWidth, windowHeight, shader);
 

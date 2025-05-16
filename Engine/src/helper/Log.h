@@ -17,8 +17,8 @@ namespace Planets {
     };
 }
 
-#define EH_CORE_TRACE(...) ::Planets::Log::GetCoreLogger()->trace(__VA_ARGS__);
-#define EH_CORE_INFO(...)  ::Planets::Log::GetCoreLogger()->info(__VA_ARGS__);
-#define EH_CORE_WARN(...)  ::Planets::Log::GetCoreLogger()->warn(__VA_ARGS__);
-#define EH_CORE_ERROR(...) ::Planets::Log::GetCoreLogger()->error(__VA_ARGS__);
-#define EH_CORE_FATAL(...) ::Planets::Log::GetCoreLogger()->fatal(__VA_ARGS__);
+#define EH_CORE_TRACE(...) Planets::Log::GetCoreLogger()->trace(__VA_ARGS__);
+#define EH_CORE_INFO(...)  Planets::Log::GetCoreLogger()->info(__VA_ARGS__);
+#define EH_CORE_WARN(...)  Planets::Log::GetCoreLogger()->warn(__VA_ARGS__);
+#define EH_CORE_ERROR(...) Planets::Log::GetCoreLogger()->error(__VA_ARGS__);
+#define EH_CORE_FATAL(...) Planets::Log::GetCoreLogger()->fatal(__VA_ARGS__);

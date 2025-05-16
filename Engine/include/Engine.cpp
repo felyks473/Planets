@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include <iostream>
 
 namespace Planets {
 
@@ -12,7 +11,7 @@ namespace Planets {
         shutdown();
     }
 
-    bool Engine::init()
+    bool Engine::init() const
     {
         Log::Init();
 
@@ -33,12 +32,12 @@ namespace Planets {
         gameLoop();
     }
 
-    void Engine::shutdown()
+    void Engine::shutdown() const
     {
         renderer->shutdown();
     }
 
-    void Engine::gameLoop()
+    void Engine::gameLoop() const
     {
         while (isRunning && !renderer->shouldClose())
         {

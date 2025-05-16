@@ -21,7 +21,7 @@ namespace Planets {
         }
     }
 
-    Entity EntityManager::getEntity(Entity::ID entityID)
+    Entity EntityManager::getEntity(Entity::ID entityID) const
     {
         return m_entities.at(entityID);
     }

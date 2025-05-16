@@ -13,12 +13,12 @@ namespace Planets {
         Engine();
         ~Engine();
 
-        bool init();
+        bool init() const;
         void run();
-        void shutdown();
+        void shutdown() const;
 
     private:
-        void gameLoop();
+        void gameLoop() const;
 
         bool isRunning;
         std::shared_ptr<Renderer> renderer;

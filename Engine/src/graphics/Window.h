@@ -15,11 +15,11 @@ namespace Planets {
         ~Window();
 
         bool init(int width, int height, const char* title);
-        void update();
+        void update() const;
         bool shouldClose() const;
         GLFWwindow* getWindow() const;
         void shutdown();
-        void processInput();
+        void processInput() const;
     private:
         GLFWwindow* window;
         World world;

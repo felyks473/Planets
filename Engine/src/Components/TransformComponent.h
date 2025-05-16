@@ -10,7 +10,7 @@ namespace Planets {
         TransformComponent();
         ~TransformComponent();
     
-        void Update(int windowWidth, int windowHeight, Shader* shader);
+        void Update(int windowWidth, int windowHeight, Shader* shader) const;
     };
 
 }

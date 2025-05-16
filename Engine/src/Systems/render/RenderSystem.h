@@ -15,15 +15,15 @@ namespace Planets
     class RenderSystem : public System
     {
     public:
-        RenderSystem(std::uint32_t VAO, Shader* shader, SphereComponent* component, int windowWidth, int windowHeight);
+        RenderSystem(const std::uint32_t VAO, Shader* shader, SphereComponent* component, const int windowWidth, const int windowHeight);
         ~RenderSystem();
 
         void Update();
     private:
-        std::uint32_t VAO;
+        const std::uint32_t VAO;
         Shader* shader;
         SphereComponent* component;
-        int windowWidth, windowHeight;
+        const int windowWidth, windowHeight;
         TransformComponent* transformComponent;
     };
 }

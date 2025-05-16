@@ -12,7 +12,7 @@ namespace Planets {
         ~Renderer();
 
         bool init();
-        void render();
+        void render() const;
         void shutdown();
 
         bool shouldClose() const;

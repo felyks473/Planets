@@ -94,7 +94,7 @@ namespace Planets {
         return VAO;
     }
 
-    std::vector<std::uint32_t>& SphereComponent::getIndices() 
+    std::vector<std::uint32_t>& SphereComponent::getIndices()
     {
         return indices;
     }

@@ -19,7 +19,7 @@ namespace Planets {
             return componentPtr;
         }
 
-        void updateComponents()
+        void updateComponents() const
         {
             for (auto& pair : components)
             {

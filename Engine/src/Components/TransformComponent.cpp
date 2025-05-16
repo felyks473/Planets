@@ -9,7 +9,7 @@ namespace Planets {
     TransformComponent::TransformComponent() {}
     TransformComponent::~TransformComponent() {}
 
-    void TransformComponent::Update(int windowWidth, int windowHeight, Shader* shader)
+    void TransformComponent::Update(int windowWidth, int windowHeight, Shader* shader) const
     {
         shader->Use();
 
