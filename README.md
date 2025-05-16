@@ -5,13 +5,20 @@ Planets simulation engine
 
 # How to build and run
 
-Clone the project
+In order to build and run the project, besides tools mentioned at the end of this file, you'll need [Git](https://git-scm.com/) and [CMake](https://cmake.org/).  
+
+First clone the project and make the build directory:
 
 ```
 git clone https://github.com/felyks473/Planets.git
 cd Planets
 mkdir build
 cd build
+```
+Then get the submodules:
+
+```
+git submodule update --init --recursive
 ```
 
 ## Windows
@@ -23,7 +30,6 @@ You can build and run the program in Visual Studio or in Powershell in MSVC like
 cmake .. -G "Visual Studio 17 2022" -A x64
 cmake --build . --config Release
 .\Planets\Release\Planets.exe
-
 ```
 
 ## Linux
