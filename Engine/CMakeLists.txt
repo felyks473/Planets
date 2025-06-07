@@ -1,17 +1,17 @@
 set(ENGINE_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Renderer.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Window.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Entity/EntityManager.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/Engine.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/World/World.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/Log.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/src/Renderer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/src/Window.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Entity/src/EntityManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Engine.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/World/src/World.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/src/Log.cpp
     ${CMAKE_SOURCE_DIR}/lib/glad.c
     ${CMAKE_SOURCE_DIR}/lib/additional.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Shader.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/Texture.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/RenderSystem.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/SphereComponent.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/TransformComponent.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/src/Shader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/src/Texture.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/src/RenderSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/src/SphereComponent.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/src/TransformComponent.cpp
 )
 
 add_library(Engine ${ENGINE_SOURCES})
@@ -19,15 +19,15 @@ add_library(Engine ${ENGINE_SOURCES})
 target_include_directories(Engine PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Managers
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Entity
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Components
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Systems
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/World
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/helper
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Managers/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Entity/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Components/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/Systems/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ECS/World/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/include
     ${CMAKE_SOURCE_DIR}/lib
     ${CMAKE_SOURCE_DIR}/lib/spdlog/include
     ${CMAKE_SOURCE_DIR}/lib/glm
