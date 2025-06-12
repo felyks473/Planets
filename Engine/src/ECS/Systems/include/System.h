@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Shader.h"
+#include <memory>
+#include <vector>
+
 namespace Planets {
  
     class System
@@ -7,7 +11,7 @@ namespace Planets {
     public:
         virtual ~System() = default;
 
-        virtual void Update() = 0;
+        virtual void Update(std::vector<std::shared_ptr<Shader>> shader) = 0;
     };
 
 }

@@ -37,4 +37,9 @@ namespace Planets {
         stbi_image_free(data);
     }
 
+    void Texture::bindTexture()
+    {
+        glBindTexture(GL_TEXTURE_2D, textureID);
+    }
+
 }

@@ -8,6 +8,7 @@
 #include "Shader.h"
 
 #include <memory>
+#include <vector>
 
 namespace Planets {
     
@@ -24,7 +25,7 @@ namespace Planets {
     private:
         GLFWwindow* window;
         World world;
-        std::shared_ptr<Shader> shader;
+        std::vector<std::shared_ptr<Shader>> shaders;
     };
 
 }

@@ -2,13 +2,11 @@
 
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Texture.h"
 
 namespace Planets {
 
     SphereComponent::SphereComponent()
     {
-        Texture texture("../Engine/src/assets/8k_earth_daymap.jpg");
         constexpr int latitudeCount = 100;
         constexpr int longitudeCount = 100;
 

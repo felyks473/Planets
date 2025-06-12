@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include "System.h"
+#include "Shader.h"
 
 namespace Planets {
  
@@ -30,11 +31,11 @@ namespace Planets {
             }
         }
 
-        void Update() const
+        void Update(std::vector<std::shared_ptr<Shader>> shaders) const
         {
             for (auto& system : systems)
             {
-                system->Update();
+                system->Update(shaders);
             }
         }
 

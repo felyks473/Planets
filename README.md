@@ -58,7 +58,7 @@ cmake --build .
 
 # Attribution
 
-Earth texture is from [this](https://www.solarsystemscope.com/textures/) website and is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+Textures are from [this](https://www.solarsystemscope.com/textures/) website which are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 This project uses stb_image which you can find [here](https://github.com/nothings/stb) which licenses you can find [here](https://github.com/nothings/stb/blob/master/LICENSE)
 
