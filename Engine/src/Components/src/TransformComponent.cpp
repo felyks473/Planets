@@ -47,7 +47,13 @@ namespace Planets {
 
             view = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -10.0f, -30.0f));
         }
+        if (shader_flag == 3)
+        {
+            model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+            model = glm::scale(model, glm::vec3(50.0f, 50.0f, 50.0f));
 
+            view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+        }
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 100.0f);
 
         glm::mat4 mvp = projection * view * model;

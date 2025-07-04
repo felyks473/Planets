@@ -27,6 +27,7 @@ namespace Planets
         const std::uint32_t VAO_EARTH;
         const std::uint32_t VAO_SUN;
         const std::uint32_t VAO_MOON;
+        const std::uint32_t VAO_STARS;
     
         std::vector<SphereComponent*> components;
         const int windowWidth;
@@ -34,8 +35,10 @@ namespace Planets
         std::unique_ptr<TransformComponent> EarthTransformComponent;
         std::unique_ptr<TransformComponent> SunTransformComponent;
         std::unique_ptr<TransformComponent> MoonTransformComponent;
+        std::unique_ptr<TransformComponent> StarTransformComponent;
         Texture earthTexture;
         Texture sunTexture;
         Texture moonTexture;
+        Texture starsTexture;
     };
 }
