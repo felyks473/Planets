@@ -62,6 +62,8 @@ Textures are from [this](https://www.solarsystemscope.com/textures/) website whi
 
 This project uses stb_image which you can find [here](https://github.com/nothings/stb) which licenses you can find [here](https://github.com/nothings/stb/blob/master/LICENSE)
 
+Parts of the camera class were borrowed from [learnopengl.com](https://learnopengl.com/)
+
 This project uses:
 
 [glfw](https://www.glfw.org/)               --- [license](https://github.com/glfw/glfw/blob/master/LICENSE.md),  

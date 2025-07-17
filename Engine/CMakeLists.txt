@@ -10,6 +10,7 @@ set(ENGINE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/src/Shader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/src/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/src/RenderSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/camera/src/CameraSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/src/SphereComponent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/src/TransformComponent.cpp
 )
@@ -27,6 +28,7 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/render/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/camera/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/include
     ${CMAKE_SOURCE_DIR}/lib
     ${CMAKE_SOURCE_DIR}/lib/spdlog/include

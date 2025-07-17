@@ -4,6 +4,7 @@
 #include <memory>
 #include "System.h"
 #include "Shader.h"
+#include <CameraSystem.h>
 
 namespace Planets {
  
@@ -31,11 +32,11 @@ namespace Planets {
             }
         }
 
-        void Update(std::vector<std::shared_ptr<Shader>> shaders) const
+        void Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem camera) const
         {
             for (auto& system : systems)
             {
-                system->Update(shaders);
+                system->Update(shaders, camera);
             }
         }
 

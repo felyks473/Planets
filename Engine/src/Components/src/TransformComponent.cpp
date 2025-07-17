@@ -1,6 +1,5 @@
 #include "TransformComponent.h"
 
-#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
 namespace Planets {
@@ -29,7 +28,7 @@ namespace Planets {
         moonAxis = glm::normalize(glm::vec3(sin(glm::radians(5.14f)), cos(glm::radians(5.14f)), 0.0f));
     }
 
-    void TransformComponent::Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag)
+    void TransformComponent::Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag, CameraSystem &camera)
     {
         shader->Use();
 
@@ -93,8 +92,8 @@ namespace Planets {
             model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
             model = glm::scale(model, glm::vec3(50.0f, 50.0f, 50.0f));
         }
+        view = camera.GetViewMatrix();
         
-        view = glm::lookAt(glm::vec3(0.0f, 0.0f, -70.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);
 
         glm::mat4 mvp = projection * view * model;

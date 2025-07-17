@@ -14,6 +14,8 @@
 
 #include "Texture.h"
 
+#include <CameraSystem.h>
+
 namespace Planets
 {
     class RenderSystem : public System
@@ -22,7 +24,7 @@ namespace Planets
         RenderSystem(std::vector<std::uint32_t> VAOS, std::vector<SphereComponent*> components, const int windowWidth, const int windowHeight);
         ~RenderSystem() = default;
 
-        void Update(std::vector<std::shared_ptr<Shader>> shaders);
+        void Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem &camera);
     private:
         const std::uint32_t VAO_EARTH;
         const std::uint32_t VAO_SUN;

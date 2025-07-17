@@ -10,6 +10,8 @@
 #include <memory>
 #include <vector>
 
+#include <CameraSystem.h>
+
 namespace Planets {
     
     class Window
@@ -22,10 +24,18 @@ namespace Planets {
         bool shouldClose() const;
         GLFWwindow* getWindow() const;
         void processInput();
+        void mouse_callback([[maybe_unused]] GLFWwindow* window, double xposIn, double yposIn);
     private:
         GLFWwindow* window;
         World world;
         std::vector<std::shared_ptr<Shader>> shaders;
+        
+        CameraSystem camera;
+        float lastX;
+        float lastY;
+        float dt;
+        float lastFrame;
+        bool firstMouse;
     };
 
 }

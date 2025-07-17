@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include <memory>
 #include <vector>
+#include <CameraSystem.h>
 
 namespace Planets {
  
@@ -11,7 +12,7 @@ namespace Planets {
     public:
         virtual ~System() = default;
 
-        virtual void Update(std::vector<std::shared_ptr<Shader>> shader) = 0;
+        virtual void Update(std::vector<std::shared_ptr<Shader>> shader, CameraSystem& camera) = 0;
     };
 
 }

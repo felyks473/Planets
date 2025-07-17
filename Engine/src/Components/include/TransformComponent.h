@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <CameraSystem.h>
 
 namespace Planets {
 
@@ -15,7 +16,7 @@ namespace Planets {
         TransformComponent();
         ~TransformComponent() = default;
     
-        void Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag);
+        void Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag, CameraSystem &camera);
     private:
         glm::mat4 view;
         glm::vec3 earthPosition;
