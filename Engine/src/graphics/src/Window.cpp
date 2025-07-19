@@ -7,10 +7,14 @@
 #include <filesystem>
 #include <glm/glm.hpp>
 
+#include "imgui.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
+
 namespace Planets {
 
     Window::Window(int width, int height, const char* title)
-    : window(nullptr), camera(glm::vec3(0.0f, 0.0f, 50.0f)), lastX(static_cast<float>(width) / 2.0f), lastY(static_cast<float>(height / 2.0f)), firstMouse(true)
+    : window(nullptr), camera(glm::vec3(0.0f, 0.0f, 50.0f)), lastX(static_cast<float>(width) / 2.0f), lastY(static_cast<float>(height / 2.0f)), firstMouse(true), canMoveKeyboard(false), canMoveMouse(false), mode(false), default_value{0.0f, 0.0f, 14.9f, 3.48f}
     {
         if (!glfwInit())
         {
@@ -95,6 +99,13 @@ namespace Planets {
         std::vector<std::uint32_t> vaos = {earth_comp->getVAO(), sun_comp->getVAO(), moon_comp->getVAO(), stars_comp->getVAO()};
         
         world.CreateSystem<RenderSystem>(vaos, comps, width, height);
+
+        stop.push_back(&mode);
+        
+        for (auto &value : default_value)
+        {
+            slider_value.push_back(&value);
+        }      
     }
 
     Window::~Window()
@@ -107,12 +118,38 @@ namespace Planets {
 
     void Window::update()
     {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
         float currentFrame = static_cast<float>(glfwGetTime());
         dt = currentFrame - lastFrame;
         lastFrame = currentFrame;
         processInput();
         glfwPollEvents();
-        world.Update(shaders, camera);
+        
+        world.Update(shaders, camera, stop, slider_value);
+        
+        ImGui::Begin("Debug");
+        if (ImGui::Button("Reset camera"))
+            camera.resetCamera();
+
+        const char* messageKeyboard = (canMoveKeyboard ? "Lock movement" : "Unlock movement");
+        const char* messageMouse = (canMoveMouse ? "Lock mouse" : "Unlock mouse");
+        ImGui::Checkbox(messageKeyboard, &canMoveKeyboard);
+        ImGui::SameLine();
+        ImGui::Checkbox(messageMouse, &canMoveMouse);
+        
+        const char* messageTime = (*stop[0] ? "Manual" : "Automatic");
+        ImGui::Checkbox(messageTime, stop[0]);
+        ImGui::SliderFloat("Earth orbit", slider_value[0], 0.0f, 5.51f);
+        ImGui::SliderFloat("Moon orbit", slider_value[1], 0.0f, 4.12f);
+        ImGui::SliderFloat("Earth distance (from Sun)", slider_value[2], 0.0f, 100.0f);
+        ImGui::SliderFloat("Moon distance (from Earth)", slider_value[3], 0.0f, 100.0f);
+        ImGui::End();
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
 
     bool Window::shouldClose() const
@@ -129,14 +166,18 @@ namespace Planets {
     {
         if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             glfwSetWindowShouldClose(window, true);
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-            camera.ProcessKeyboard(FORWARD, dt);
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-            camera.ProcessKeyboard(BACKWARD, dt);
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-            camera.ProcessKeyboard(LEFT, dt);
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-            camera.ProcessKeyboard(RIGHT, dt);
+        
+        if (canMoveKeyboard)
+        {
+            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+                camera.ProcessKeyboard(FORWARD, dt);
+            if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+                camera.ProcessKeyboard(BACKWARD, dt);
+            if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+                camera.ProcessKeyboard(LEFT, dt);
+            if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+                camera.ProcessKeyboard(RIGHT, dt);
+        }
     }   
 
     void Window::mouse_callback([[maybe_unused]] GLFWwindow* window, double xposIn, double yposIn)
@@ -157,7 +198,8 @@ namespace Planets {
         lastX = xpos;
         lastY = ypos;
 
-        camera.ProcessMouseMovement(xoffset, yoffset);
+        if (canMoveMouse)
+            camera.ProcessMouseMovement(xoffset, yoffset);
     }
 
 }

@@ -16,7 +16,7 @@ namespace Planets {
         TransformComponent();
         ~TransformComponent() = default;
     
-        void Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag, CameraSystem &camera);
+        void Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag, CameraSystem &camera, std::vector<bool*>& stop, std::vector<float*>& slider_value);
     private:
         glm::mat4 view;
         glm::vec3 earthPosition;

@@ -28,7 +28,7 @@ namespace Planets {
         moonAxis = glm::normalize(glm::vec3(sin(glm::radians(5.14f)), cos(glm::radians(5.14f)), 0.0f));
     }
 
-    void TransformComponent::Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag, CameraSystem &camera)
+    void TransformComponent::Update(int windowWidth, int windowHeight, std::shared_ptr<Shader> shader, int shader_flag, CameraSystem &camera, std::vector<bool*>& stop, std::vector<float*>& slider_value)
     {
         shader->Use();
 
@@ -39,22 +39,35 @@ namespace Planets {
         /* That's either going to make the moon's distance too large or make the spinning of the moon too slow                                       */
         /* At one point I'll try to get them in sync but for now let them be slightly inaccurate                                                     */
 
-        float earthSpinningSpeed = 360.0f / (days * 24.0f * 60.0f * 60.0f) * static_cast<float>(glfwGetTime()) * 1e4f;
-        float moonSpinningSpeed = 360.0f / (27.321661f * 24.0f * 60.0f * 60.0f) * static_cast<float>(glfwGetTime()) * 1e4f; //27.321661 days
+        float time = glfwGetTime();
+        float earthSpinningSpeed = 360.0f / (days * 24.0f * 60.0f * 60.0f) * static_cast<float>(time) * 1e4f;
+        float moonSpinningSpeed = 360.0f / (27.321661f * 24.0f * 60.0f * 60.0f) * static_cast<float>(time) * 1e4f; //27.321661 days
     
-        float sunSpinningSpeed = 360.0f / (25.0f * 24.0f * 60.0f * 60.0f) * static_cast<float>(glfwGetTime()) * 1e4f; // approx. 25 days
+        float sunSpinningSpeed = 360.0f / (25.0f * 24.0f * 60.0f * 60.0f) * static_cast<float>(time) * 1e4f; // approx. 25 days
 
         if (shader_flag == 0) // Earth
         {
-            model = glm::translate(model, earthPosition);
             tilt = glm::rotate(tilt, glm::radians(23.5f), glm::vec3(1.0f, 0.0f, 0.0f));
-            /* 1e5f is a scale factor */
-            earthPosition.x = distanceFromEarthX * cos(earthOrbitSpeed * glfwGetTime() * 1e5f);
-            earthPosition.z = distanceFromEarthZ * sin(earthOrbitSpeed * glfwGetTime() * 1e5f);
             
+            /* 1e5f is a scale factor */
+            earthPosition.x = distanceFromEarthX * cos(earthOrbitSpeed * 1e5f * glfwGetTime());
+            earthPosition.z = distanceFromEarthZ * sin(earthOrbitSpeed * 1e5f * glfwGetTime());
+            
+            if (*stop[0])
+            {
+                earthPosition.x = *slider_value[2] * cos(*slider_value[0] * 1e5f * earthOrbitSpeed);
+                earthPosition.z = (*slider_value[2] - 0.4e6f / 1e7f) * sin(*slider_value[0] * 1e5f * earthOrbitSpeed);
+            }
+
+            model = glm::translate(model, earthPosition);
+
             model = model * tilt;
 
-            model = glm::rotate(model, glm::radians(earthSpinningSpeed), earthAxis);
+            if (*stop[0])
+                model = glm::rotate(model, glm::radians(earthSpinningSpeed / time), earthAxis);
+            else 
+                model = glm::rotate(model, glm::radians(earthSpinningSpeed), earthAxis);
+
         }
         if (shader_flag == 1) // Sun
         {
@@ -72,17 +85,31 @@ namespace Planets {
             glm::mat4 earth_model = glm::mat4(1.0f);
             
             /* 1e5f is a scale factor */
-            earthPosition.x = distanceFromEarthX * cos(earthOrbitSpeed * glfwGetTime() * 1e5f);
-            earthPosition.z = distanceFromEarthZ * sin(earthOrbitSpeed * glfwGetTime() * 1e5f);
-            earth_model = glm::translate(earth_model, earthPosition);         
+            earthPosition.x = distanceFromEarthX * cos(earthOrbitSpeed * 1e5f * glfwGetTime());
+            earthPosition.z = distanceFromEarthZ * sin(earthOrbitSpeed * 1e5f * glfwGetTime());
 
             moonPosition.x = distanceFromMoonX * cos(moonSpinningSpeed);
             moonPosition.z = distanceFromMoonZ * sin(moonSpinningSpeed);
-        
-            moon_model = glm::rotate(moon_model, glm::radians(5.14f), glm::vec3(1.0f, 0.0f, 0.0f));
-            moon_model = glm::rotate(moon_model, glm::radians(moonSpinningSpeed), moonAxis);
+
+            if (*stop[0])
+            {
+                earthPosition.x = *slider_value[2] * cos(*slider_value[0] * 1e5f * earthOrbitSpeed);
+                earthPosition.z = (*slider_value[2] - 0.4e6f / 1e7f) * sin(*slider_value[0] * 1e5f * earthOrbitSpeed);
+                
+                moonPosition.x = *slider_value[3] * cos(*slider_value[1] * 1e4f * 360.0f / (27.321661f * 24.0f * 60.0f * 60.0f));
+                moonPosition.z = *slider_value[3] * sin(*slider_value[1] * 1e4f * 360.0f / (27.321661f * 24.0f * 60.0f * 60.0f));    
+            }
+
+            earth_model = glm::translate(earth_model, earthPosition);         
+
             moon_model = glm::translate(moon_model, moonPosition);
-        
+            moon_model = glm::rotate(moon_model, glm::radians(5.14f), glm::vec3(1.0f, 0.0f, 0.0f));
+            
+            if (*stop[0])
+                moon_model = glm::rotate(moon_model, glm::radians(moonSpinningSpeed / time), moonAxis);
+            else 
+                moon_model = glm::rotate(moon_model, glm::radians(moonSpinningSpeed), moonAxis);
+
             moon_model = glm::scale(moon_model, glm::vec3(0.25f, 0.25f, 0.25f));
 
             model = earth_model * moon_model;

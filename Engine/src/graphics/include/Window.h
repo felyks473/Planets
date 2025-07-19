@@ -36,6 +36,15 @@ namespace Planets {
         float dt;
         float lastFrame;
         bool firstMouse;
+        
+        bool canMoveKeyboard;
+        bool canMoveMouse;
+        
+        bool mode;
+        std::vector<bool*> stop;
+        
+        std::vector<float> default_value;
+        std::vector<float*> slider_value;
     };
 
 }

@@ -17,6 +17,17 @@ CameraSystem::CameraSystem(glm::vec3 position, glm::vec3 up) : Position(position
         return glm::lookAt(Position, Position + Front, Up);
     }
 
+    void CameraSystem::resetCamera()
+    {   
+        Position = glm::vec3(0.0f, 0.0f, 50.0f);
+        Front = glm::vec3(0.0f, 0.0f, 49.0f);
+        Up = glm::vec3(0.0f, 51.0f, 0.0f);
+        WorldUp = Up;
+        PITCH = 0.0f;
+        YAW = -90.0f;
+        updateCameraVectors();
+    }
+
     void CameraSystem::ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch)
     {
         xoffset *= MouseSensitivity;

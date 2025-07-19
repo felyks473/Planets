@@ -32,11 +32,11 @@ namespace Planets {
             }
         }
 
-        void Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem camera) const
+        void Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem camera, std::vector<bool*>& stop, std::vector<float*>& slider_value) const
         {
             for (auto& system : systems)
             {
-                system->Update(shaders, camera);
+                system->Update(shaders, camera, stop, slider_value);
             }
         }
 

@@ -69,4 +69,5 @@ This project uses:
 [glfw](https://www.glfw.org/)               --- [license](https://github.com/glfw/glfw/blob/master/LICENSE.md),  
 [glad](https://glad.dav1d.de/)              --- [license](https://github.com/Dav1dde/glad/blob/glad2/LICENSE),  
 [spdlog](https://github.com/gabime/spdlog)  --- [license](https://github.com/gabime/spdlog/blob/v1.x/LICENSE),  
-[glm](https://github.com/g-truc/glm)        --- [license](https://github.com/g-truc/glm/blob/master/copying.txt)  
+[glm](https://github.com/g-truc/glm)        --- [license](https://github.com/g-truc/glm/blob/master/copying.txt),
+[imgui](https://github.com/ocornut/imgui)   --- [license](https://github.com/ocornut/imgui/blob/master/LICENSE.txt)

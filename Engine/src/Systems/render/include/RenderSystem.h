@@ -24,7 +24,7 @@ namespace Planets
         RenderSystem(std::vector<std::uint32_t> VAOS, std::vector<SphereComponent*> components, const int windowWidth, const int windowHeight);
         ~RenderSystem() = default;
 
-        void Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem &camera);
+        void Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem &camera, std::vector<bool*>& stop, std::vector<float*>& slider_value);
     private:
         const std::uint32_t VAO_EARTH;
         const std::uint32_t VAO_SUN;

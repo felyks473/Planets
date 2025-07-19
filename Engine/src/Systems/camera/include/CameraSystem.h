@@ -24,6 +24,7 @@ namespace Planets {
         glm::mat4 GetViewMatrix();
         void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);
         void ProcessKeyboard(Camera_Movement direction, float dt);
+        void resetCamera();
     private:
         void updateCameraVectors();
     private:

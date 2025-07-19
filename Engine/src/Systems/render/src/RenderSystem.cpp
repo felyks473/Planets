@@ -10,30 +10,30 @@ namespace Planets {
         StarTransformComponent = std::make_unique<TransformComponent>();
     }
 
-    void RenderSystem::Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem &camera)
+    void RenderSystem::Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem &camera, std::vector<bool*>& stop, std::vector<float*>& slider_value)
     {
-        EarthTransformComponent->Update(windowWidth, windowHeight, shaders[0], 0, camera);
+        EarthTransformComponent->Update(windowWidth, windowHeight, shaders[0], 0, camera, stop, slider_value);
         
         earthTexture.bindTexture();
         glBindVertexArray(VAO_EARTH);
         glDrawElements(GL_TRIANGLES, components[0]->getIndices().size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);    
 
-        SunTransformComponent->Update(windowWidth, windowHeight, shaders[1], 1, camera);
+        SunTransformComponent->Update(windowWidth, windowHeight, shaders[1], 1, camera, stop, slider_value);
         
         sunTexture.bindTexture();
         glBindVertexArray(VAO_SUN);
         glDrawElements(GL_TRIANGLES, components[1]->getIndices().size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
-        MoonTransformComponent->Update(windowWidth, windowHeight, shaders[2], 2, camera);
+        MoonTransformComponent->Update(windowWidth, windowHeight, shaders[2], 2, camera, stop, slider_value);
         
         moonTexture.bindTexture();
         glBindVertexArray(VAO_MOON);
         glDrawElements(GL_TRIANGLES, components[2]->getIndices().size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         
-        StarTransformComponent->Update(windowWidth, windowHeight, shaders[3], 3, camera);
+        StarTransformComponent->Update(windowWidth, windowHeight, shaders[3], 3, camera, stop, slider_value);
         
         starsTexture.bindTexture();
         glBindVertexArray(VAO_STARS);

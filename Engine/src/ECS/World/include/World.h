@@ -22,7 +22,7 @@ namespace Planets {
         void CreateSystem(Args&&... args);
         void AddSystem(std::shared_ptr<System> sys);
         void RemoveSystem(std::shared_ptr<System> sys);
-        void Update(std::vector<std::shared_ptr<Shader>> shader, CameraSystem camera) const;
+        void Update(std::vector<std::shared_ptr<Shader>> shader, CameraSystem camera, std::vector<bool*>& stop, std::vector<float*>& slider_value) const;
         template <typename T>
         T* AddComponent(std::uint32_t ID);
     public:

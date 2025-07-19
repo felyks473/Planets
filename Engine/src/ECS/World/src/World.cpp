@@ -27,9 +27,9 @@ namespace Planets {
         systemManager->Remove(sys);
     }
 
-    void World::Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem camera) const
+    void World::Update(std::vector<std::shared_ptr<Shader>> shaders, CameraSystem camera, std::vector<bool*>& stop, std::vector<float*>& slider_value) const
     {
-        systemManager->Update(shaders, camera);
+        systemManager->Update(shaders, camera, stop, slider_value);
     }
 
 }
