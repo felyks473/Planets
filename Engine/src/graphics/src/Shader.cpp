@@ -105,6 +105,11 @@ namespace Planets {
         glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
     }
 
+    void Shader::setInt(const std::string &name, int n) const
+    {
+        glUniform1i(glGetUniformLocation(shaderID, name.c_str()), n);
+    }
+    
     void Shader::cleanup()
     {
         glDeleteProgram(shaderID);

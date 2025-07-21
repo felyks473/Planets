@@ -41,6 +41,8 @@ namespace Planets {
         bool canMoveMouse;
         
         bool mode;
+        bool atmosphere;
+        bool night;
         std::vector<bool*> stop;
         
         std::vector<float> default_value;
