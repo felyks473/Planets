@@ -49,15 +49,37 @@ CameraSystem::CameraSystem(glm::vec3 position, glm::vec3 up) : Position(position
 
     void CameraSystem::ProcessKeyboard(Camera_Movement direction, float dt)
     {
+        glm::vec3 nextPosition;
+        
         float velocity = MovementSpeed * dt;
         if (direction == FORWARD)
+        {
             Position += Front * velocity;
+            nextPosition = Position + Front * velocity;
+        }
         if (direction == BACKWARD)
+        {
             Position -= Front * velocity;
+            nextPosition = Position - Front * velocity;
+        }
         if (direction == LEFT)
+        {
             Position -= Right * velocity;
+            nextPosition = Position - Right * velocity;
+        }
         if (direction == RIGHT)
+        {
             Position += Right * velocity;
+            nextPosition = Position + Right * velocity;
+        }
+
+        float distanceFromCenter = glm::length(nextPosition - glm::vec3(0.0f, 0.0f, 0.0f));
+        if (distanceFromCenter > 74.0f)
+        {
+            glm::vec3 dir = glm::normalize(nextPosition - glm::vec3(0.0f, 0.0f, 0.0f));
+            nextPosition = glm::vec3(0.0f, 0.0f, 0.0f) + dir * 74.0f;
+            Position = nextPosition;
+        }
     }
 
     void CameraSystem::updateCameraVectors()

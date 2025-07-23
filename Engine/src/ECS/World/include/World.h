@@ -23,8 +23,8 @@ namespace Planets {
         void AddSystem(std::shared_ptr<System> sys);
         void RemoveSystem(std::shared_ptr<System> sys);
         void Update(std::vector<std::shared_ptr<Shader>> shader, CameraSystem camera, std::vector<bool*>& stop, std::vector<float*>& slider_value) const;
-        template <typename T>
-        T* AddComponent(std::uint32_t ID);
+        template <typename T, typename... Args>
+        T* AddComponent(std::uint32_t ID, Args&&... args);
     public:
         std::shared_ptr<EntityManager> entityManager;
         std::shared_ptr<ComponentManager> componentManager;
@@ -39,8 +39,8 @@ void Planets::World::CreateSystem(Args&&... args)
     systemManager->Create<T>(std::forward<Args>(args)...);
 }
 
-template <typename T>
-T* Planets::World::AddComponent(std::uint32_t ID)
+template <typename T, typename... Args>
+T* Planets::World::AddComponent(std::uint32_t ID, Args&&... args)
 {
-    return componentManager->addComponent<T>(ID);
+    return componentManager->addComponent<T>(ID, std::forward<Args>(args)...);
 }

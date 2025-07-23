@@ -61,7 +61,7 @@ namespace Planets {
         SphereComponent* earth_comp = world.AddComponent<SphereComponent>(earth.getID());
         SphereComponent* sun_comp = world.AddComponent<SphereComponent>(sun.getID());
         SphereComponent* moon_comp = world.AddComponent<SphereComponent>(moon.getID());
-        SphereComponent* stars_comp = world.AddComponent<SphereComponent>(stars.getID());
+        SphereComponent* stars_comp = world.AddComponent<SphereComponent>(stars.getID(), 75.0f);
         
         std::filesystem::path vfPath = "../Engine/src/shader/sphere_shader.vs";
         std::filesystem::path ffPath = "../Engine/src/shader/sphere_shader.fs";

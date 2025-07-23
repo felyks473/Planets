@@ -114,10 +114,9 @@ namespace Planets {
 
             model = earth_model * moon_model;
         }
-        if (shader_flag == 3)
+        if (shader_flag == 3) // Stars
         {
             model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-            model = glm::scale(model, glm::vec3(50.0f, 50.0f, 50.0f));
         }
         view = camera.GetViewMatrix();
         

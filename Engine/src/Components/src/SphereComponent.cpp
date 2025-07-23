@@ -5,7 +5,7 @@
 
 namespace Planets {
 
-    SphereComponent::SphereComponent()
+    SphereComponent::SphereComponent(float r)
     {
         constexpr int latitudeCount = 100;
         constexpr int longitudeCount = 100;
@@ -14,7 +14,6 @@ namespace Planets {
         std::vector<glm::vec2> texCoords;
 
         constexpr float PI = 3.1415926535f;
-        constexpr float r = 1.5f;
         for (int lat = 0; lat <= latitudeCount; ++lat) {
             
             float theta = lat * PI / latitudeCount;

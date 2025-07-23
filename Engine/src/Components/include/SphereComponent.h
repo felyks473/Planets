@@ -9,7 +9,7 @@ namespace Planets {
     class SphereComponent : public Component
     {
     public:
-        SphereComponent();
+        SphereComponent(float r = 1.5f);
         ~SphereComponent() = default;
 
         void update();
