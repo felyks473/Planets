@@ -145,6 +145,8 @@ namespace Planets {
         
         const char* messageTime = (*stop[0] ? "Stop" : "Start");
         ImGui::Checkbox(messageTime, stop[0]);
+        ImGui::SameLine();
+        ImGui::Text("        Press X (And hold for a while) to stop/start the mouse movement");
 
         world.Update(shaders, camera, stop, slider_value);
         ImGui::End();
@@ -166,7 +168,18 @@ namespace Planets {
     {
         if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             glfwSetWindowShouldClose(window, true);
-        
+
+        static float timer = 0.0f;
+        if(glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
+        {
+            timer += 0.0004f;
+            if (timer > 0.016f)
+            {
+                timer = 0.0f;
+                canMoveMouse = !canMoveMouse;
+            }
+        }
+
         if (canMoveKeyboard)
         {
             if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
