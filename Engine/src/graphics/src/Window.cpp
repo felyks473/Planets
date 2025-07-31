@@ -130,8 +130,6 @@ namespace Planets {
         processInput();
         glfwPollEvents();
         
-        world.Update(shaders, camera, stop, slider_value);
-        
         ImGui::Begin("Debug");
         if (ImGui::Button("Reset camera"))
             camera.resetCamera();
@@ -145,14 +143,11 @@ namespace Planets {
         ImGui::SameLine();
         ImGui::Checkbox(messageMouse, &canMoveMouse);
         
-        const char* messageTime = (*stop[0] ? "Manual" : "Automatic");
+        const char* messageTime = (*stop[0] ? "Stop" : "Start");
         ImGui::Checkbox(messageTime, stop[0]);
-        ImGui::SliderFloat("Earth orbit", slider_value[0], 0.0f, 5.51f);
-        ImGui::SliderFloat("Moon orbit", slider_value[1], 0.0f, 4.12f);
-        ImGui::SliderFloat("Earth distance (from Sun)", slider_value[2], 0.0f, 100.0f);
-        ImGui::SliderFloat("Moon distance (from Earth)", slider_value[3], 0.0f, 100.0f);
-        ImGui::End();
 
+        world.Update(shaders, camera, stop, slider_value);
+        ImGui::End();
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }

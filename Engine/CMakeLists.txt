@@ -13,6 +13,7 @@ set(ENGINE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Systems/camera/src/CameraSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/src/SphereComponent.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Components/src/TransformComponent.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/src/Timer.cpp
 )
 
 add_library(Engine ${ENGINE_SOURCES})
@@ -35,4 +36,5 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_SOURCE_DIR}/lib/glm
     ${CMAKE_SOURCE_DIR}/lib/glfw/include
     ${CMAKE_SOURCE_DIR}/lib/imgui
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/helper/include
 )

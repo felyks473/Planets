@@ -8,6 +8,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <CameraSystem.h>
 
+#include <Timer.h>
+
 namespace Planets {
 
     class TransformComponent 
@@ -26,12 +28,14 @@ namespace Planets {
         float angleRadians;
         float distanceFromEarthX;
         float distanceFromEarthZ;
-        float distanceFromMoonX;
-        float distanceFromMoonZ;
+        float distanceFromMoon;
         float days;
         glm::vec3 earthAxis;
         glm::vec3 sunAxis;
         glm::vec3 moonAxis;
+        Timer earth_timer;
+        Timer moon_timer;
+        Timer sun_timer;
     };
 
 }
