@@ -11,6 +11,7 @@ namespace Planets {
         constexpr int longitudeCount = 100;
 
         std::vector<glm::vec3> vertices;
+        std::vector<glm::vec3> normals;
         std::vector<glm::vec2> texCoords;
 
         constexpr float PI = 3.1415926535f;
@@ -26,6 +27,12 @@ namespace Planets {
                 float z = r * sin(theta) * sin(phi);
 
                 vertices.push_back(glm::vec3(x, y, z));
+
+                float n_x = x / r;
+                float n_y = y / r;
+                float n_z = z / r;
+
+                normals.push_back(glm::vec3(n_x, n_y, n_z));
                 
                 float s = 1.0f - static_cast<float>(lon) / longitudeCount;
                 float t = 1.0f - static_cast<float>(lat) / latitudeCount;
@@ -72,9 +79,12 @@ namespace Planets {
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(0));
         glEnableVertexAttribArray(0);
 
-        glBindBuffer(GL_ARRAY_BUFFER, VBO_TEX);
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), static_cast<void*>(0));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(0));
         glEnableVertexAttribArray(1);
+
+        glBindBuffer(GL_ARRAY_BUFFER, VBO_TEX);
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), static_cast<void*>(0));
+        glEnableVertexAttribArray(2);
 
         glBindVertexArray(0);
         glEnable(GL_DEPTH_TEST); 

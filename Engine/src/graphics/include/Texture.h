@@ -10,7 +10,7 @@ namespace Planets {
     {
     public:
         Texture(const char* path);
-        Texture(const char* path1, const char* path2);
+        Texture(const char* path1, const char* path2, const char* path3);
         ~Texture() = default;
         void bindTexture(std::uint32_t);
         std::vector<std::uint32_t> getID() const;

@@ -195,9 +195,9 @@ namespace Planets {
         
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);
 
-        glm::mat4 mvp = projection * view * model;
-
-        shader->setMat4("mvp", mvp);
+        shader->setMat4("model", model);
+        shader->setMat4("view", view);
+        shader->setMat4("projection", projection);
     }
 
 }

@@ -38,10 +38,11 @@ namespace Planets {
         stbi_image_free(data);
     }
 
-   Texture::Texture(const char* path1, const char* path2)
+   Texture::Texture(const char* path1, const char* path2, const char* path3)
     {
         textureID.push_back(1);
         textureID.push_back(2);
+        textureID.push_back(3);
 
         glGenTextures(1, &textureID[0]);
         glBindTexture(GL_TEXTURE_2D, textureID[0]);
@@ -97,7 +98,35 @@ namespace Planets {
             EH_CORE_ERROR("Failed to load the texture\n");
         }
         
-        stbi_image_free(data1);   
+        stbi_image_free(data2);
+        
+        glGenTextures(1, &textureID[2]);
+        glBindTexture(GL_TEXTURE_2D, textureID[2]);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        int width3;
+        int height3;
+        int nrChannels3;
+
+        stbi_set_flip_vertically_on_load(true);
+        unsigned char *data3 = stbi_load(path3, &width3, &height3, &nrChannels3, 0);
+        if (data3)
+        {
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width3, height3, 0, GL_RGB, GL_UNSIGNED_BYTE, data3);
+            glGenerateMipmap(GL_TEXTURE_2D);
+            EH_CORE_INFO("Texture loaded successfully\n");
+        }
+        else 
+        {
+            EH_CORE_ERROR("Failed to load the texture\n");
+        }
+        
+        stbi_image_free(data3);
     }
 
     void Texture::bindTexture(std::uint32_t id)

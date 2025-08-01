@@ -42,6 +42,5 @@ namespace Planets
         Texture sunTexture;
         Texture moonTexture;
         Texture starsTexture;
-        Texture earthNightTexture;
     };
 }

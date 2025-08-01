@@ -14,7 +14,7 @@
 namespace Planets {
 
     Window::Window(int width, int height, const char* title)
-    : window(nullptr), camera(glm::vec3(0.0f, 0.0f, 50.0f)), lastX(static_cast<float>(width) / 2.0f), lastY(static_cast<float>(height / 2.0f)), firstMouse(true), canMoveKeyboard(false), canMoveMouse(false), mode(false), atmosphere(false), night(false), default_value{0.0f, 0.0f, 14.9f, 3.48f}
+    : window(nullptr), camera(glm::vec3(0.0f, 0.0f, 50.0f)), lastX(static_cast<float>(width) / 2.0f), lastY(static_cast<float>(height / 2.0f)), firstMouse(true), canMoveKeyboard(false), canMoveMouse(false), mode(false), atmosphere(false), default_value{0.0f, 0.0f, 14.9f, 3.48f}
     {
         if (!glfwInit())
         {
@@ -102,7 +102,6 @@ namespace Planets {
 
         stop.push_back(&mode);
         stop.push_back(&atmosphere);
-        stop.push_back(&night);
         
         for (auto &value : default_value)
         {
@@ -135,7 +134,6 @@ namespace Planets {
             camera.resetCamera();
         ImGui::SameLine();
         ImGui::Checkbox("Atmosphere", stop[1]);
-        ImGui::Checkbox("Night", stop[2]);
 
         const char* messageKeyboard = (canMoveKeyboard ? "Lock movement" : "Unlock movement");
         const char* messageMouse = (canMoveMouse ? "Lock mouse" : "Unlock mouse");
